@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Sobre nosotros";
+}
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title.</h2>
+
+    <p>
+        SmartBus es una aplicación web diseñada para simplificar la gestión del transporte en autobús.
+        Con una interfaz intuitiva y moderna, SmartBus permite a los administradores gestionar de forma
+        eficiente los datos de conductores, rutas y tarifas, asegurando que toda la información esté siempre
+        actualizada. Para los usuarios, la aplicación ofrece una experiencia clara y directa, permitiendo consultar
+        rápidamente rutas disponibles y tarifas, lo que facilita la planificación de viajes y mejora la experiencia
+        de movilidad. Con SmartBus, la administración del transporte se vuelve más ágil y transparente, integrando
+        tecnología de punta para optimizar tanto la operación interna como la experiencia del usuario final.
+    </p>
+    <p>
+        <a href="@Url.Action("Contact", "Home")" class="btn btn-outline-dark btn-md">Contáctanos &raquo;</a>
+    </p>
+</main>

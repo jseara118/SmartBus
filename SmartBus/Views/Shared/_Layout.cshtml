@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - SmartBus</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body style="background-color: #f7f7f5;">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark" style="background-color: #345257">
+        <div class="container">
+            @Html.ActionLink("SmartBus", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Sobre nosotros", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Conductores", "Index", "Conductors", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Rutas", "Index", "Rutas", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Tarifas", "Index", "Tarifas", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+                 @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        
+        <footer class="text-center fixed-bottom">
+            <p>&copy; @DateTime.Now.Year - SmartBus</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

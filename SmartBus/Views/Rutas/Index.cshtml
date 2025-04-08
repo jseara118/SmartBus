@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SmartBus.Models.Ruta>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Origen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destino)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Origen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destino)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.RutaId })
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.Raw(" | ")
+                        @Html.ActionLink("Edit", "Edit", new { id = item.RutaId })
+                        @Html.Raw(" | ")
+                        @Html.ActionLink("Delete", "Delete", new { id = item.RutaId })
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>

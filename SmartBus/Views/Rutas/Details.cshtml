@@ -1,0 +1,56 @@
+﻿@model SmartBus.Models.Ruta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@{
+    var mapas = new Dictionary<int, string>
+{
+        { 1, "<iframe src=\"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d31440.947549318753!2d-84.1342557494994!3d9.924092645226803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x8fa0e342c50d15c5%3A0xe6746a6a9f11b882!2zU2FuIEpvc8Op!3m2!1d9.9280694!2d-84.0907246!4m5!1s0x8fa0fc89ffb80fe9%3A0x24fbc782c723412d!2zU2FuIEpvc8OpLCBFc2NhesO6!3m2!1d9.9202446!2d-84.1390855!5e0!3m2!1ses!2scr!4v1744077950897!5m2!1ses!2scr\" width=\"400\" height=\"300\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>" },
+        { 2, "<iframe src=\"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d31441.96733653039!2d-84.10124014950743!3d9.913465297244061!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x8fa0e342c50d15c5%3A0xe6746a6a9f11b882!2zU2FuIEpvc8Op!3m2!1d9.9280694!2d-84.0907246!4m5!1s0x8fa0e2e34751040b%3A0x2631b3acf1783ed9!2sSan%20Jos%C3%A9%2C%20Desamparados!3m2!1d9.8969706!2d-84.0616709!5e0!3m2!1ses!2scr!4v1744078245509!5m2!1ses!2scr\" width=\"400\" height=\"300\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>" },
+        { 3, "<iframe src=\"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d62874.82350369664!2d-84.10544451907704!3d9.960852765990605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x8fa0e342c50d15c5%3A0xe6746a6a9f11b882!2zU2FuIEpvc8Op!3m2!1d9.9280694!2d-84.0907246!4m5!1s0x8fa0e5e0dc2c631b%3A0x2756857036da5ea3!2sSan%20Jos%C3%A9%2C%20Moravia!3m2!1d10.0101333!2d-84.01145439999999!5e0!3m2!1ses!2scr!4v1744078280689!5m2!1ses!2scr\" width=\"400\" height=\"300\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>" },
+        { 4, "<iframe src=\"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d31439.797709495822!2d-84.13210764949045!3d9.936061792953174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x8fa0e342c50d15c5%3A0xe6746a6a9f11b882!2zU2FuIEpvc8Op!3m2!1d9.9280694!2d-84.0907246!4m5!1s0x8fa0fb7cd844b233%3A0xbec1ea3e9ef89936!2sSan%20Jos%C3%A9%2C%20Pavas%20Centro!3m2!1d9.9420336!2d-84.1336192!5e0!3m2!1ses!2scr!4v1744078317105!5m2!1ses!2scr\" width=\"400\" height=\"300\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>" },
+        { 5, "<iframe src=\"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d15720.594434809607!2d-84.10905856613206!3d9.92157882980926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x8fa0e342c50d15c5%3A0xe6746a6a9f11b882!2zU2FuIEpvc8Op!3m2!1d9.9280694!2d-84.0907246!4m5!1s0x8fa0fcb75d05e7a3%3A0xcbc77147d7d9ed1a!2sHatillo%2C%20San%20Jos%C3%A9!3m2!1d9.922704999999999!2d-84.1076259!5e0!3m2!1ses!2scr!4v1744078348827!5m2!1ses!2scr\" width=\"400\" height=\"300\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>" },
+        { 6, "<iframe src=\"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d31441.339371283004!2d-84.08833159950254!3d9.920010746001768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x8fa0e342c50d15c5%3A0xe6746a6a9f11b882!2zU2FuIEpvc8Op!3m2!1d9.9280694!2d-84.0907246!4m5!1s0x8fa0e3bf9923854d%3A0x6902098cdd1bda50!2sSan%20Jos%C3%A9%2C%20Curridabat!3m2!1d9.915496!2d-84.0357966!5e0!3m2!1ses!2scr!4v1744078379339!5m2!1ses!2scr\" width=\"400\" height=\"300\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>" },
+        { 7, "<iframe src=\"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d31439.70101324441!2d-84.09284504948965!3d9.937067692762021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x8fa0e342c50d15c5%3A0xe6746a6a9f11b882!2zU2FuIEpvc8Op!3m2!1d9.9280694!2d-84.0907246!4m5!1s0x8fa0e47b29807d63%3A0xac204eb1e99176ea!2sSan%20Jos%C3%A9%2C%20Guadalupe!3m2!1d9.946603099999999!2d-84.0536463!5e0!3m2!1ses!2scr!4v1744078408459!5m2!1ses!2scr\" width=\"400\" height=\"300\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>" },
+        { 8, "<iframe src=\"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d125794.78380447716!2d-84.1878453801088!3d9.843060714908962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x8fa0e342c50d15c5%3A0xe6746a6a9f11b882!2zU2FuIEpvc8Op!3m2!1d9.9280694!2d-84.0907246!4m5!1s0x8fa1037d1a7bcb23%3A0x9922c50b2955c65!2sSan%20Jos%C3%A9%2C%20La%20Uruca!3m2!1d9.7643165!2d-84.13435679999999!5e0!3m2!1ses!2scr!4v1744078437348!5m2!1ses!2scr\" width=\"400\" height=\"300\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>" },
+        { 9, "<iframe src=\"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d31441.83161252903!2d-84.11578674950637!3d9.91488034697553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x8fa0e342c50d15c5%3A0xe6746a6a9f11b882!2zU2FuIEpvc8Op!3m2!1d9.9280694!2d-84.0907246!4m5!1s0x8fa0e32cca9103e1%3A0x576b84d0c33ecd0b!2sSan%20Jos%C3%A9%2C%20Alajuelita!3m2!1d9.901608!2d-84.09947!5e0!3m2!1ses!2scr!4v1744078467823!5m2!1ses!2scr\" width=\"400\" height=\"300\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>" },
+        {10, "<iframe src=\"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d15720.732854881768!2d-84.09952366613263!3d9.91869423003921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x8fa0e342c50d15c5%3A0xe6746a6a9f11b882!2zU2FuIEpvc8Op!3m2!1d9.9280694!2d-84.0907246!4m5!1s0x8fa0e33d430c569d%3A0xabf22bc7e08a8d42!2sSan%20Jos%C3%A9%2C%20Paso%20Ancho!3m2!1d9.907733799999999!2d-84.0808215!5e0!3m2!1ses!2scr!4v1744078495041!5m2!1ses!2scr\" width=\"400\" height=\"300\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>" },
+ };
+
+    string mapaHtml = mapas.ContainsKey(Model.RutaId) ? mapas[Model.RutaId] : "<p>No hay mapa disponible para esta ruta.</p>";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ruta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Origen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Origen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destino)
+        </dd>
+
+    </dl>
+    <div>
+        <h4>Mapa de la Ruta</h4>
+        @Html.Raw(mapaHtml)
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RutaId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
